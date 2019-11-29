@@ -1,18 +1,17 @@
 """
-11. Skapa spelet Tangenta!
-Klassen ska heta Tangenta. Använd biblioteket time för att hålla reda på tiden.
-När objektet har skapats ska programmet fråga om man vill spela Tangenta.
+11. Create the game "TypeME"
+Create a class called "Tangenta". Use the time library to keep track of time.
+When the object has been created the program should ask if you want to play Tangenta.
 
-Om man klickar mellanslag ska stoppuret sättas igång och man ska skriva in alfabetet (A-Z) så fort som
-möjligt. Använd biblioteket keyboard. När man är klar ska man klicka mellanslag igen för att
-stoppa tiden.
+By pressing space the stopwatch start and you're supposed to write the alphabet (A-Z) as fast as
+possible. Use the library keyboard. When you are done you press space again to stop the time
 
-Man jämför sedan att det man skrivit in är alfabetet i ordning. Om det stämmer
-ska programmet fråga användaren om ett namn och spara namn samt tiden i en textfil.
-Om inte ska den fråga om man vill spela igen.
+Compare what was written to the alphabet in order. If it is correct the program should ask the user
+for a name and save name and time to a textfile.
 
-Bonus: Räkna hur många fel man skrivit eller om man missat några bokstäver. Strafftid är 1
-sekund per fel/saknad bokstav.
+If not it should ask if the user wants to play again.
+
+Bonus: Count how many mistakes or if some characters have been missed. Penalty is 1 sec per mistake/missing letter.
 """
 import time, os, math, keyboard, string, sys, csv, threading
 
