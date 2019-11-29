@@ -14,30 +14,39 @@ Om inte ska den fråga om man vill spela igen.
 Bonus: Räkna hur många fel man skrivit eller om man missat några bokstäver. Strafftid är 1
 sekund per fel/saknad bokstav.
 """
-import time, os, math, keyboard, string, sys
+import time, os, math, keyboard, string, sys, csv, threading
+
 sys.path.append('..')
 
+
 class Tangenta:
-    pass
+    def __init__(self, player):
+        self.player = player
+        self.timer = 0
+        self.score = 0
 
-#def print_pressed_keys(e):
-#    line = ', '.join(str(code) for code in keyboard._pressed_events)
-	# '\r' and end='' overwrites the previous line.
-	# ' '*40 prints 40 spaces at the end to ensure the previous line is cleared.
-#    print('\r' + line + ' '*40, end='')
+    def start(self):
+        self.timer = time.time()
 
-def print_pressed_keys(e):
-    line = ', '.join(str(code) for code in keyboard._pressed_events)
-	# '\r' and end='' overwrites the previous line.
-	# ' '*40 prints 40 spaces at the end to ensure the previous line is cleared.
-    print('\r' + line + ' '*40, end='')
-g
+    def finish(self):
+        self.timer = (time.time() - self.timer)
+        return self.timer
 
-keys = list(string.ascii_lowercase)
 
-print(keys)
+def capture_key(k):
+    print(k.name)
+    return k.name
+
+
+# t0 = time.time()
+
+t = Tangenta(input("Player Name: "))
+
 print("Starting Hook")
-keyboard.hook(print_pressed_keys)
+keyboard.hook(capture_key)
 keyboard.wait('esc')
 print("Ending hook")
+print(t.finish())
+# stop the count and get elapsed time
+# print(time.time() - t0, "seconds wall time")
 input("Press enter to exit")
