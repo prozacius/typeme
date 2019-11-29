@@ -23,29 +23,40 @@ class Tangenta:
         self.player = player
         self.timer = 0
         self.score = 0
+        self.k = keyboard
+        self.recorded = ''
 
     def start(self):
+        print("Press space to begin")
+        self.k.wait('space')
         self.timer = time.time()
+        self.record_keys()
 
     def finish(self):
         self.timer = (time.time() - self.timer)
+        print("\nIt took you: ", self.timer, "s")
+        print(self.recorded)
         return self.timer
 
+    def capture_key(self):
+        print(self.k.name)
+        return self.k.name
 
-def capture_key(k):
-    print(k.name)
-    return k.name
+    def record_keys(self):
+        self.recorded = self.k.record(until='space')
 
 
-# t0 = time.time()
+user: str = input("Name : ")
+t = Tangenta(user)
+t.start()
+t.finish()
 
-t = Tangenta(input("Player Name: "))
-
-print("Starting Hook")
-keyboard.hook(capture_key)
-keyboard.wait('esc')
-print("Ending hook")
-print(t.finish())
+# print("Starting Hook")
+# keyboard.hook(t.capture_key)
+# keyboard.wait('esc')
+# print("Ending hook")
+# print(t.finish())
 # stop the count and get elapsed time
 # print(time.time() - t0, "seconds wall time")
+
 input("Press enter to exit")
