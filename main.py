@@ -25,31 +25,52 @@ class Tangenta:
         self.score = 0
         self.k = keyboard
         self.recorded = ''
-
+        self.alphabet = 'aabbccddeeffgghhiijjkkllmmnnooppqqrrssttuuvvwwxxyyzz'
+    
+    def record_keys(self):
+        self.recorded = self.k.record(until='space', trigger_on_release=False)
+    
     def start(self):
-        print("Press space to begin")
+        print("\n\nPress space to begin writing the Alphabet\n\n")
         self.k.wait('space')
+        print("\n\nWrite the Alphabet AS FAST AS YOU CAN!!! GO !!!\n\n!!! PRESS SPACE WHEN FINISHED !!!\n\n")
         self.timer = time.time()
         self.record_keys()
+        
 
     def finish(self):
+        print("Press SPACE for results!")
+        self.k.wait('space')
+
+        str0 = ''
         self.timer = (time.time() - self.timer)
+         
         print("\nIt took you: ", self.timer, "s")
-        print(self.recorded)
-        return self.timer
+       
+        for i in self.recorded:
+            #(print(i.name+'\n'))
+            str0 += i.name
+        
+        str1 = str0
+        str1 = str1.replace('space', '')
+        print("You entered: " + str1)
+        print("Compared to: " + self.alphabet)
 
-    def capture_key(self):
-        print(self.k.name)
-        return self.k.name
-
-    def record_keys(self):
-        self.recorded = self.k.record(until='space')
-
+        if str1==self.alphabet:
+            print("!!!!! ALL CORRECT !!!!! YOU WIN !!!!!")
+            return False
+        else:
+            print("MISTAKES WERE MADE, TRY TRY AGAIN! PRESS SPACE TO TRY AGAIN")
+            return True
 
 user: str = input("Name : ")
 t = Tangenta(user)
-t.start()
-t.finish()
+
+run = True
+
+while run == True:
+    t.start()
+    run = t.finish()
 
 # print("Starting Hook")
 # keyboard.hook(t.capture_key)
@@ -59,4 +80,4 @@ t.finish()
 # stop the count and get elapsed time
 # print(time.time() - t0, "seconds wall time")
 
-input("Press enter to exit")
+input("### THANK YOU CUM AGAIN ### Press enter to exit ###")
